@@ -1,0 +1,19 @@
+.main-section{
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px 200px 200px;
+    align-items: center;
+
+}
+.main-container{
+    display: grid;
+    position: relative;
+    overflow: hidden;
+    justify-content: center;
+    width: 200px;
+    height: 250px;
+    background-color: white;
+}
+
+img{
+    max-height:100%;
+}
