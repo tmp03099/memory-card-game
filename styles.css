@@ -9,12 +9,17 @@
     position: relative;
     height: 100%;
     width: 100%;
-    border: 1px solid #f1f1f1;
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
 }
 
+.flipbox{
+    background-color: transparent;
+    height: 200px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px;
+}
 
 .flipped {
     transform: rotateY(180deg);
@@ -37,6 +42,7 @@ img {
 
 .back-img {
     position: relative;
+    object-fit: scale-down;
     top: -100%;
     transform: rotateY(180deg);
 }

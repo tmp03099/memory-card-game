@@ -30,6 +30,7 @@ for( row = 0; row <5 ; row++ ){
     for (column = 0 ;  column < 6 ; column++){
         const colDiv = document.createElement('div');
         colDiv.classList.add('col-2');
+        colDiv.classList.add('flipbox');
 
         const containerDiv = document.createElement('div')
         containerDiv.classList.add('card-container');
