@@ -1,10 +1,10 @@
 //select the element
 const mainSection = document.querySelector('.main-section');
 
-
 //assign new variable
 let row;
 let column; 
+let firstOpenCard;
 
 //make a pictures array
 const pictures = [
@@ -67,19 +67,50 @@ function createImg(urlLink){
 
 //click event for each card
 const cardContainer = document.querySelectorAll('.card-container');
-let flippedCard = false;
 
 cardContainer.forEach(card =>{
     card.addEventListener('click', flipCard);
+        
     
 })
 
 function flipCard(){
-    console.log(this);
-    
     this.classList.toggle('flipped');
+    console.dir(this);
+
+    //check if the first open card
+    if(this.classList.contains('flipped')){
+
+        // check  the first card
+        if(firstOpenCard == null){
+            //asign this to firstOpenCard
+            firstOpenCard = this;
+            console.log(firstOpenCard);
+        
+        }else{
+            console.log("S")
+            //check the second card
+            checkMatching(this)
+        }
+        
+    }else{
+        firstOpenCard = null;
+    }
+
+
 }
 
+//Check match card between the new card with last open card
+function checkMatching(newFlip){
+    if(newFlip.querySelector('.back-img').currentSrc === firstOpenCard.querySelector('.back-img').currentSrc){
+        
+        console.log("Matching")
+    }else{
+        newFlip.classList.remove('flipped');
+        firstOpenCard.classList.remove('flipped');
+    }
+    firstOpenCard = null;
+}
 
 
 
