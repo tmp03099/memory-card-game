@@ -131,4 +131,35 @@ function winning(){
 }
 
 
+//Set limit time for player
+let intervalTime;
+let secondTime = 300;
+
+const timer = document.getElementById('timer');
+
+function setTime(){
+
+    let min = Math.floor(secondTime/60);
+    let sec = secondTime % 60;
+    
+    if (sec.toString().length === 1){
+        sec = "0" + sec.toString();
+    }
+    timer.innerHTML = min + ":" + sec ;
+
+    if (secondTime > 0){
+        secondTime -- ;
+
+    }else{
+        timer.innerHTML = "Time out";
+    }
+    
+}
+
+function timeStart(){
+    intervalTime = setInterval(setTime, 1000);
+    setTime();
+}
+
+timeStart();
 
