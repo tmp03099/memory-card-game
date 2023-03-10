@@ -69,41 +69,50 @@ function createImg(urlLink){
 const cardContainer = document.querySelectorAll('.card-container');
 
 cardContainer.forEach(card =>{
+    //add event click for each card and flip the card when clicked 
     card.addEventListener('click', flipCard);
-        
     
+        
 })
 
 function flipCard(){
+    // this. is the last clicked
     this.classList.toggle('flipped');
     console.dir(this);
 
-    //check if the first open card
-    if(this.classList.contains('flipped')){
+    //Deplay 1 second before checking
+    setTimeout(()=>{
+        console.log('Deplayed for 1 second');
 
-        // check  the first card
-        if(firstOpenCard == null){
-            //asign this to firstOpenCard
-            firstOpenCard = this;
-            console.log(firstOpenCard);
-        
+        //check if the first open card
+        if(this.classList.contains('flipped')){
+    
+            // check  the first card
+            if(firstOpenCard == null){
+
+                //asign this to firstOpenCard
+                firstOpenCard = this;
+                console.log(firstOpenCard);
+            
+            }else{
+                console.log("S")
+                //check the second card
+                checkMatching(this);
+                winning();
+            }
+            
         }else{
-            console.log("S")
-            //check the second card
-            checkMatching(this)
+            firstOpenCard = null;
         }
-        
-    }else{
-        firstOpenCard = null;
-    }
 
+    },1000)
 
 }
 
 //Check match card between the new card with last open card
 function checkMatching(newFlip){
+
     if(newFlip.querySelector('.back-img').currentSrc === firstOpenCard.querySelector('.back-img').currentSrc){
-        
         console.log("Matching")
     }else{
         newFlip.classList.remove('flipped');
@@ -112,6 +121,14 @@ function checkMatching(newFlip){
     firstOpenCard = null;
 }
 
+//Check winning
+function winning(){
+    
+    const allFlipped = document.querySelectorAll('.flipped')
+    if (allFlipped.length === cardContainer.length){
+        console.log('winner');
+    }
+}
 
 
 
