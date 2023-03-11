@@ -1,10 +1,17 @@
 //select the element
 const mainSection = document.querySelector('.main-section');
+const winSection = document.querySelector('.win-section');
 
 //assign new variable
 let row;
 let column; 
 let firstOpenCard;
+
+//Set limit time for player
+let intervalTime;
+let secondTime = 300;
+let start = false;
+const timer = document.getElementById('timer');
 
 //make a pictures array
 const pictures = [
@@ -80,6 +87,12 @@ function flipCard(){
     this.classList.toggle('flipped');
     console.dir(this);
 
+    //check if the first card is clicked then time will start
+    if(start === false){
+        timeStart();
+        start = true; //to control the timeStart only run once time.
+    }
+
     //Deplay 1 second before checking
     setTimeout(()=>{
         console.log('Deplayed for 1 second');
@@ -126,16 +139,32 @@ function winning(){
     
     const allFlipped = document.querySelectorAll('.flipped')
     if (allFlipped.length === cardContainer.length){
-        console.log('winner');
+        winSection.textContent = "WOW, YOU WIN!!!"
     }
 }
 
+//Reset button
+function reset(){
+    const button = document.querySelector('button');
+    button.addEventListener('click', () => {
+        cardContainer.forEach(ele =>{
+            ele.classList.remove('flipped');
+        });
 
-//Set limit time for player
-let intervalTime;
-let secondTime = 300;
+        //set time is 0
+        timer.innerHTML = 0;
+        //stop time
+        clearInterval(intervalTime);
+        //reset time just begin when clicked is true
+        start = false;
+        // set time again
+        secondTime = 300;
 
-const timer = document.getElementById('timer');
+    });
+}
+
+reset();
+
 
 function setTime(){
 
@@ -152,6 +181,7 @@ function setTime(){
 
     }else{
         timer.innerHTML = "Time out";
+        winSection.textContent = "OOHHH! YOU LOOSE"
     }
     
 }
@@ -161,5 +191,5 @@ function timeStart(){
     setTime();
 }
 
-timeStart();
+
 
