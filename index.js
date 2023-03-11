@@ -1,17 +1,20 @@
 //select the element
 const mainSection = document.querySelector('.main-section');
 const winSection = document.querySelector('.win-section');
+const timer = document.getElementById('timer');
+const score = document.getElementById("score");
 
 //assign new variable
 let row;
 let column; 
 let firstOpenCard;
+let point = 0;
+let  disableFlip = false;
 
-//Set limit time for player
+//Set time for player
 let intervalTime;
 let secondTime = 300;
 let start = false;
-const timer = document.getElementById('timer');
 
 //make a pictures array
 const pictures = [
@@ -83,8 +86,13 @@ cardContainer.forEach(card =>{
 })
 
 function flipCard(){
+
+    if (disableFlip == false){
+        this.classList.toggle('flipped');
+
+    }
+
     // this. is the last clicked
-    this.classList.toggle('flipped');
     console.dir(this);
 
     //check if the first card is clicked then time will start
@@ -126,8 +134,15 @@ function flipCard(){
 function checkMatching(newFlip){
 
     if(newFlip.querySelector('.back-img').currentSrc === firstOpenCard.querySelector('.back-img').currentSrc){
-        console.log("Matching")
+        console.log("Matching");
+        point += 100;
+        score.innerHTML = point;
+        console.log("+", point)
+
     }else{
+        point -= 10;
+        console.log("-", point)
+
         newFlip.classList.remove('flipped');
         firstOpenCard.classList.remove('flipped');
     }
@@ -139,7 +154,10 @@ function winning(){
     
     const allFlipped = document.querySelectorAll('.flipped')
     if (allFlipped.length === cardContainer.length){
-        winSection.textContent = "WOW, YOU WIN!!!"
+        winSection.textContent = `WOW, YOU WIN!!!`
+        clearInterval(intervalTime)
+        removeEventListener('click', cardContainer);
+        disableFlip = true;
     }
 }
 
@@ -151,6 +169,8 @@ function reset(){
             ele.classList.remove('flipped');
         });
 
+        winSection.textContent = ""
+
         //set time is 0
         timer.innerHTML = 0;
         //stop time
@@ -159,6 +179,9 @@ function reset(){
         start = false;
         // set time again
         secondTime = 300;
+
+        //set toggle flip
+        disableFlip = false;
 
     });
 }
@@ -181,7 +204,9 @@ function setTime(){
 
     }else{
         timer.innerHTML = "Time out";
-        winSection.textContent = "OOHHH! YOU LOOSE"
+        winSection.textContent = "OOHHH! YOU LOOSE";
+        disableFlip = true;
+
     }
     
 }
