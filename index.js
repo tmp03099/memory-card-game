@@ -16,20 +16,22 @@ let intervalTime;
 let secondTime = 300;
 let start = false;
 
-//make a pictures array
-const pictures = [
-    'pictures/p1.jpg','pictures/p2.jpg','pictures/p3.jpg',
-    'pictures/p4.jpg','pictures/p5.jpg','pictures/p6.jpg',
-    'pictures/p7.jpg','pictures/p8.jpg','pictures/p9.jpg',
-    'pictures/p10.jpg','pictures/p11.jpg','pictures/p12.jpg',
-    'pictures/p13.jpg','pictures/p14.jpg','pictures/p15.jpg',
 
-    'pictures/p1.jpg','pictures/p2.jpg','pictures/p3.jpg',
-    'pictures/p4.jpg','pictures/p5.jpg','pictures/p6.jpg',
-    'pictures/p7.jpg','pictures/p8.jpg','pictures/p9.jpg',
-    'pictures/p10.jpg','pictures/p11.jpg','pictures/p12.jpg',
-    'pictures/p13.jpg','pictures/p14.jpg','pictures/p15.jpg'
-];
+function getPictures() {
+    return [
+        'pictures/p1.jpg','pictures/p2.jpg','pictures/p3.jpg',
+        'pictures/p4.jpg','pictures/p5.jpg','pictures/p6.jpg',
+        'pictures/p7.jpg','pictures/p8.jpg','pictures/p9.jpg',
+        'pictures/p10.jpg','pictures/p11.jpg','pictures/p12.jpg',
+        'pictures/p13.jpg','pictures/p14.jpg','pictures/p15.jpg',
+    
+        'pictures/p1.jpg','pictures/p2.jpg','pictures/p3.jpg',
+        'pictures/p4.jpg','pictures/p5.jpg','pictures/p6.jpg',
+        'pictures/p7.jpg','pictures/p8.jpg','pictures/p9.jpg',
+        'pictures/p10.jpg','pictures/p11.jpg','pictures/p12.jpg',
+        'pictures/p13.jpg','pictures/p14.jpg','pictures/p15.jpg'
+    ];
+}
 
 //Created a board to play. Total slot need an even number.
 for( row = 0; row <5 ; row++ ){
@@ -45,15 +47,15 @@ for( row = 0; row <5 ; row++ ){
         const containerDiv = document.createElement('div')
         containerDiv.classList.add('card-container');
         
-        const backImg = createImg(pictures);
-        backImg.classList.add('back-img')
+        // const backImg = createImg(pictures);
+        // backImg.classList.add('back-img')
 
         const frontImg = document.createElement('img');
         frontImg.setAttribute('src', 'pictures/front-background.jpg');
         frontImg.classList.add('front-img')
 
         containerDiv.appendChild(frontImg);
-        containerDiv.appendChild(backImg);
+        // containerDiv.appendChild(backImg);
 
         colDiv.appendChild(containerDiv);
 
@@ -61,19 +63,35 @@ for( row = 0; row <5 ; row++ ){
     }
     mainSection.appendChild(rowDiv);
     
-    
 }
+randomPictures();
 
 function createImg(urlLink){
+
     //get random number
     const random = Math.floor(Math.random() * urlLink.length);
 
     const img = document.createElement('img');
     img.setAttribute('src', urlLink[random]);
-    urlLink.splice(random, 1)
+    urlLink.splice(random, 1); //remove random img from list
 
     return img;
 }
+
+function randomPictures(){
+    const containerDivs = document.querySelectorAll('.card-container');
+    const pictures = getPictures();
+
+    containerDivs.forEach(ele =>{
+        if (ele.querySelector('.back-img')){
+            ele.removeChild(ele.querySelector('.back-img'));
+        }
+        const backImg = createImg(pictures);
+        backImg.classList.add('back-img');
+        ele.appendChild(backImg);
+    })
+}
+
 
 //click event for each card
 const cardContainer = document.querySelectorAll('.card-container');
@@ -137,7 +155,7 @@ function checkMatching(newFlip){
         console.log("Matching");
         point += 100;
         score.innerHTML = point;
-        console.log("+", point)
+        console.log("+", point);
 
     }else{
         point -= 10;
@@ -155,8 +173,7 @@ function winning(){
     const allFlipped = document.querySelectorAll('.flipped')
     if (allFlipped.length === cardContainer.length){
         winSection.textContent = `WOW, YOU WIN!!!`
-        clearInterval(intervalTime)
-        removeEventListener('click', cardContainer);
+        clearInterval(intervalTime);
         disableFlip = true;
     }
 }
@@ -182,6 +199,13 @@ function reset(){
 
         //set toggle flip
         disableFlip = false;
+
+        //reset score
+        score.innerHTML = 0;
+        point = 0;
+
+        //
+        randomPictures();
 
     });
 }
@@ -215,6 +239,4 @@ function timeStart(){
     intervalTime = setInterval(setTime, 1000);
     setTime();
 }
-
-
 
