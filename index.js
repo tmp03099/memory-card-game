@@ -9,7 +9,7 @@ let row;
 let column; 
 let firstOpenCard;
 let point = 0;
-let  disableFlip = false;
+let disableFlip = false;
 
 //Set time for player
 let intervalTime;
@@ -64,10 +64,28 @@ for( row = 0; row <5 ; row++ ){
     mainSection.appendChild(rowDiv);
     
 }
+
+function randomPictures(){
+    const containerDivs = document.querySelectorAll('.card-container');
+    const pictures = getPictures();
+    
+    containerDivs.forEach(ele =>{
+        if (ele.querySelector('.back-img')){
+            ele.removeChild(ele.querySelector('.back-img'));
+        }
+        const backImg = createImg(pictures);
+        backImg.classList.add('back-img');
+        ele.appendChild(backImg);
+    })
+}
 randomPictures();
 
+/*
+createImg function to create random img tag
+input: urlLink - as input paramater to get the pictures array
+return: img - randomed img
+*/
 function createImg(urlLink){
-
     //get random number
     const random = Math.floor(Math.random() * urlLink.length);
 
@@ -78,36 +96,26 @@ function createImg(urlLink){
     return img;
 }
 
-function randomPictures(){
-    const containerDivs = document.querySelectorAll('.card-container');
-    const pictures = getPictures();
-
-    containerDivs.forEach(ele =>{
-        if (ele.querySelector('.back-img')){
-            ele.removeChild(ele.querySelector('.back-img'));
-        }
-        const backImg = createImg(pictures);
-        backImg.classList.add('back-img');
-        ele.appendChild(backImg);
-    })
-}
-
 
 //click event for each card
 const cardContainer = document.querySelectorAll('.card-container');
 
 cardContainer.forEach(card =>{
     //add event click for each card and flip the card when clicked 
-    card.addEventListener('click', flipCard);
-    
-        
+    card.addEventListener('click', flipCard);     
 })
 
+
+
+// handler for fliping card
 function flipCard(){
 
-    if (disableFlip == false){
+    //check to toggle card
+    if (disableFlip == false & !this.classList.contains('matching')){
         this.classList.toggle('flipped');
 
+    }else{
+        return 
     }
 
     // this. is the last clicked
@@ -119,48 +127,56 @@ function flipCard(){
         start = true; //to control the timeStart only run once time.
     }
 
-    //Deplay 1 second before checking
-    setTimeout(()=>{
-        console.log('Deplayed for 1 second');
-
-        //check if the first open card
-        if(this.classList.contains('flipped')){
-    
-            // check  the first card
-            if(firstOpenCard == null){
-
-                //asign this to firstOpenCard
-                firstOpenCard = this;
-                console.log(firstOpenCard);
-            
-            }else{
-                console.log("S")
-                //check the second card
-                checkMatching(this);
-                winning();
-            }
-            
-        }else{
-            firstOpenCard = null;
-        }
-
-    },1000)
-
+    setTimeout(() =>{checkFirstCard(this)},1000);
 }
 
-//Check match card between the new card with last open card
+
+/*
+checkFirstCard function to find the first open card
+input: clicked - as input parameter to get the last clicked card
+*/
+function checkFirstCard(clicked){
+
+    //check if the first open card
+    if(clicked.classList.contains('flipped')){
+
+        // check  the first card
+        if(firstOpenCard == null){
+
+            //asign this to firstOpenCard
+            firstOpenCard = clicked;
+            console.log(firstOpenCard);
+        
+        }else{
+            console.log("S")
+            //check the second card
+            checkMatching(clicked);
+            winning();
+        }
+        
+    }else{
+        firstOpenCard = null;
+    }
+}
+
+
+/*
+checkMatching function to check match card between the new card with last open card
+input: newFlip - as input parameter to get new card
+*/
 function checkMatching(newFlip){
 
     if(newFlip.querySelector('.back-img').currentSrc === firstOpenCard.querySelector('.back-img').currentSrc){
-        console.log("Matching");
         point += 100;
         score.innerHTML = point;
-        console.log("+", point);
+        // add matching class to disable click
+        newFlip.classList.add('matching');
+        firstOpenCard.classList.add('matching');
 
     }else{
         point -= 10;
         console.log("-", point)
-
+        //remove flipped class if not match
         newFlip.classList.remove('flipped');
         firstOpenCard.classList.remove('flipped');
     }
