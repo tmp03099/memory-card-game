@@ -38,7 +38,22 @@ img {
     transform: rotateY(180deg);
 }
 
+
+h1{
+    font-family: 'Press Start 2P';
+}
+
+.side-container{
+    font-family: 'Rye';
+    font-size: 2.5vw;
+}
+
+.win-section{
+    font-family: 'Bungee Shade';
+    color:blue
+}
 @media screen and (min-width: 768px) {
+
     .flipbox{
         height: 200px;
 

@@ -13,7 +13,7 @@ let disableFlip = false;
 
 //Set time for player
 let intervalTime;
-let secondTime = 300;
+let secondTime = 0;
 let start = false;
 
 
