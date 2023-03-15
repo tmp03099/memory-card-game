@@ -14,31 +14,30 @@
     <title>Pikachu game</title>
 
 </head>
-<body class="bg-img">
-    <header>
-        <h1 class="display-6 text-center">PIKACHU CARD</h1>
-        <h2 class="win-section"></h2>
-    </header>
-    <main class="d-lg-flex">
-        <section class="d-flex align-items-center side-section">
-            <div class="text-center side-container">
-                <div class="time-play">
-                    <p>Timer: <span id="timer"> 0 </span></p>
+<body >
+    <div class="bg-img" style="background-image: url(https://images5.alphacoders.com/389/389247.png); height:100vh;">
+        <header>
+            <h1 class="display-5 text-center p-4">PIKACHU CARD</h1>
+            <h2 class="win-section p-2"></h2>
+        </header>
+        <main class="d-flex flex-column flex-lg-row align-items-center justify-content-center">
+            <section class="d-flex align-items-center justify-content-center side-section">
+                <div class="d-flex flex-sm-row flex-lg-column text-center align-items-center side-container p-3 fs-3 fw-bold">
+                    <div class="time-play mx-4">
+                        <span id="timer"> 0 </span>
+                    </div>
+                    <div class="score-section mx-4">
+                        Score: <span id="score">0 </span> 
+                    </div>
+                    <div class="resetButton mx-4">
+                        <button type="button" class="btn btn-warning">Reset</button>
+                    </div>
                 </div>
-                <div class="score-section">
-                    <p>Score: <span id="score">0</span> </p>
-                </div>
-                <div class="resetButton">
-                    <button type="button" class="btn btn-warning">Reset</button>
-                </div>
-            </div>
-        </section>
-        <section class="container main-section">
-            
-        </section>
-    </main>
-    <footer>
-
-    </footer>
+            </section>
+            <section class="container main-section mx-2">
+                
+            </section>
+        </main>
+    </div>
 </body>
 </html>

@@ -45,17 +45,40 @@ h1{
 
 .side-container{
     font-family: 'Rye';
-    font-size: 2.5vw;
 }
 
 .win-section{
     font-family: 'Bungee Shade';
     color:blue
 }
+@media screen and (min-width: 560px) {
+
+    .flipbox{
+        height: 120px;
+
+    }
+
+    img{
+        height:20vh
+    }
+}
+
 @media screen and (min-width: 768px) {
 
     .flipbox{
-        height: 200px;
+        height: 130px;
+
+    }
+
+    img{
+        height:20vh
+    }
+}
+
+@media screen and (min-width: 992px) {
+
+    .flipbox{
+        height: 130px;
 
     }
 

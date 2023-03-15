@@ -13,9 +13,12 @@ let disableFlip = false;
 
 //Set time for player
 let intervalTime;
-let secondTime = 0;
+let secondTime = 300;
 let start = false;
 
+//sound
+const audio = new Audio("./sound/flipcard-91468.mp3");
+const winnerAudio = new Audio("./sound/pikachu.mp3");
 
 function getPictures() {
     return [
@@ -102,18 +105,20 @@ const cardContainer = document.querySelectorAll('.card-container');
 
 cardContainer.forEach(card =>{
     //add event click for each card and flip the card when clicked 
-    card.addEventListener('click', flipCard);     
+    card.addEventListener('click', flipCard);    
 })
 
 
 
 // handler for fliping card
 function flipCard(){
+    
+    audio.play(); 
 
     //check to toggle card
     if (disableFlip == false & !this.classList.contains('matching')){
         this.classList.toggle('flipped');
-
+        
     }else{
         return 
     }
@@ -191,6 +196,7 @@ function winning(){
         winSection.textContent = `WOW, YOU WIN!!!`
         clearInterval(intervalTime);
         disableFlip = true;
+        winnerAudio.play();
     }
 }
 
