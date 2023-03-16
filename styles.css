@@ -42,6 +42,8 @@ img {
 
 h1{
     font-family: 'Press Start 2P';
+    text-shadow: 5px 5px #000000e0;
+    color: #FA7070;
 }
 
 .side-container{
@@ -49,8 +51,10 @@ h1{
 }
 
 .win-section{
+    text-align: center;
     font-family: 'Bungee Shade';
-    color:blue
+    color:#007eff;
+    background-color: rgb(255 255 255 / 49%);
 }
 
 @media screen and (min-width: 560px) {

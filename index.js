@@ -13,7 +13,7 @@ let disableFlip = false;
 
 //Set time for player
 let intervalTime;
-let secondTime = 300;
+let secondTime = 3;
 let start = false;
 
 //sound
@@ -49,16 +49,12 @@ for( row = 0; row <5 ; row++ ){
 
         const containerDiv = document.createElement('div')
         containerDiv.classList.add('card-container');
-        
-        // const backImg = createImg(pictures);
-        // backImg.classList.add('back-img')
 
         const frontImg = document.createElement('img');
         frontImg.setAttribute('src', 'pictures/front-background.jpg');
         frontImg.classList.add('front-img')
 
         containerDiv.appendChild(frontImg);
-        // containerDiv.appendChild(backImg);
 
         colDiv.appendChild(containerDiv);
 
@@ -68,6 +64,7 @@ for( row = 0; row <5 ; row++ ){
     
 }
 
+//randomPictures function to select random pictures and at them to each card container
 function randomPictures(){
     const containerDivs = document.querySelectorAll('.card-container');
     const pictures = getPictures();
@@ -84,7 +81,7 @@ function randomPictures(){
 randomPictures();
 
 /*
-createImg function to create random img tag
+createImg function to get a random img tag from the input array
 input: urlLink - as input paramater to get the pictures array
 return: img - randomed img
 */
@@ -234,7 +231,7 @@ function reset(){
 
 reset();
 
-
+// set limit time for game
 function setTime(){
 
     let min = Math.floor(secondTime/60);
@@ -257,6 +254,7 @@ function setTime(){
     
 }
 
+//set time start
 function timeStart(){
     intervalTime = setInterval(setTime, 1000);
     setTime();
