@@ -11,6 +11,7 @@
     background-color: transparent;
     border: 1px solid #f1f1f1;
     perspective: 1000px;
+    height: 85px;
     padding: 0;
 }
 
@@ -51,6 +52,7 @@ h1{
     font-family: 'Bungee Shade';
     color:blue
 }
+
 @media screen and (min-width: 560px) {
 
     .flipbox{
