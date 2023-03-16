@@ -2,7 +2,7 @@
 > Pokemon card is a memory game very popular game with a set of cards :older_adult::woman::child:.
 
 ## About
-[Pokemon Card](https://tmp03099.github.io/connect-four-game.github.io/) - This is a web version of the memory game. 
+[Pokemon Card](https://tmp03099.github.io/memory-card-game/) - This is a web version of the memory game. 
 
 ### Main Features
 - Responsive Design with Bootstraps 
@@ -13,7 +13,7 @@
 - Sound for winner and flip card
 
 ### How To Play
-The game starts with all the cards face down and each turn to flip the card. If the two cards match, then the keep the card, otherwise the card will turn down again.
+The game starts with all the cards face down and player will flip the card once at the time. If the two cards match, then the keep the card, otherwise the card will turn down again.
 The winner will be a person turn over all the card before the limit time. 
 
 
@@ -46,7 +46,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information
 My Phung Tieu - [LinkedIn](https://www.linkedin.com/in/my-phung-tieu-0bba22219/) - [Github](https://github.com/tmp03099):heart_eyes:
 
 
-Project Link - [MemoryCard](https://tmp03099.github.io/connect-four-game.github.io/) :smiley:
+Project Link - [Pokemon Card](https://tmp03099.github.io/memory-card-game/) :smiley:
 
 ## Acknowledgements
 - [DOMTokenList](https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList)
