@@ -13,7 +13,7 @@ let disableFlip = false;
 
 //Set time for player
 let intervalTime;
-let secondTime = 3;
+let secondTime = 300;
 let start = false;
 
 //sound
