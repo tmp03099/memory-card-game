@@ -4,6 +4,9 @@
 ## About
 [Pokemon Card](https://tmp03099.github.io/memory-card-game/) - This is a web version of the memory game. 
 
+![image](https://user-images.githubusercontent.com/84693135/227305068-32759f8e-bef1-4478-abbc-bcdbc6978369.png)
+
+
 ### Main Features
 - Responsive Design with Bootstraps 
 - DOM manipulate
